@@ -1,6 +1,7 @@
 package com.moonpi.swiftnotes.ColorPicker;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,9 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
 
         LayoutInflater.from(context).inflate(R.layout.color_picker_swatch, this);
         mSwatchImage = (ImageView) findViewById(R.id.color_picker_swatch);
+        //add color to content description
+        String hexColor = String.format("#%06X", (0xFFFFFF & color));
+        mSwatchImage.setContentDescription(hexColor);
         mCheckmarkImage = (ImageView) findViewById(R.id.color_picker_checkmark);
         setColor(color);
         setChecked(checked);
