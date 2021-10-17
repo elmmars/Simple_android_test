@@ -1,21 +1,17 @@
 # Swiftnotes
 
-**This project is no longer maintained.**
-
-Swiftnotes is a note taking app that takes simplicity and speed to a whole new level. 
-
-It offers you a quick and easy way to stay organised, capture your thoughts, reminders or anything that's on your mind, any time, anywhere. No extra unnecessary features, just notes.
-
+- Запуск всех тестов: adb shell am instrument -w -m    -e package com.moonpi.swiftnotes.tests -e debug false com.moonpi.swiftnotes.test/io.qameta.allure.android.runners.AllureAndroidJUnitRunner
+- Отчеты хранятся на sd карте эмулятора/устройства, на котором запускались тесты.
+В учебном демо-приложении использовались:
+  - JUnit для запуска тестов;
+  - Allure Kotlin для генерации отчетов;
+  - Espresso для взаимодействия с UI-элементами.
+Тесты написаны с использованием паттерна PageObject.
+  
 ### Build
 
 Steps on how to build Swiftnotes:
 - Make sure you have the latest version of Android Studio with Gradle v2.3.1 and the required Android SDK Tools installed (25.0.3 Build tools)
-- Clone this repository
-- Open Android Studio -> File -> Import Project
-- Select build.gradle in Swiftnotes
-- Go to Project Structure and make sure Android SDK and JDK paths are set
-- Build -> Rebuild Project and Sync Gradle
-- Good to go!
 
 ### License
 
