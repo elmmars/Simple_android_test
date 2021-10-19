@@ -1,12 +1,13 @@
 # Swiftnotes
 
-- Запуск всех тестов: adb shell am instrument -w -m    -e package com.moonpi.swiftnotes.tests -e debug false com.moonpi.swiftnotes.test/io.qameta.allure.android.runners.AllureAndroidJUnitRunner
-- Отчеты хранятся на sd карте эмулятора/устройства, на котором запускались тесты.
+- Запуск всех тестов: `adb shell am instrument -w -m    -e package com.moonpi.swiftnotes.tests -e debug false com.moonpi.swiftnotes.test/io.qameta.allure.android.runners.AllureAndroidJUnitRunner`
+- Отчеты хранятся на SD-карте эмулятора/устройства, на котором запускались тесты.
 В учебном демо-приложении использовались:
-  - JUnit для запуска тестов;
-  - Allure Kotlin для генерации отчетов;
-  - Espresso для взаимодействия с UI-элементами.
-Тесты написаны с использованием паттерна PageObject.
+  - __JUnit__ для запуска тестов;
+  - __Allure Kotlin__ для генерации отчетов;
+  - __Espresso__ для взаимодействия с UI-элементами.
+
+Тесты написаны с использованием паттерна __PageObject__.
   
 ### Build
 
