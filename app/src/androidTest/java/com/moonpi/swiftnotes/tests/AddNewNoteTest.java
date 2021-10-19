@@ -34,6 +34,13 @@ public class AddNewNoteTest extends BaseTest {
     }
 
     @Test
+    public void clickAndCheckNoteFontSize() {
+        addNewNotePage.clickMenuButton()
+                .clickNoteFontSizeButton()
+                .checkNoteFontSizeMenu();
+    }
+
+    @Test
     public void typeAndCheckTitleAndTextOfNewNote() {
         addNewNotePage.typeAndCheckTitle("Some title")
                 .clickOnNote()
@@ -46,6 +53,11 @@ public class AddNewNoteTest extends BaseTest {
                 .clickOnNote()
                 .typeAndCheckNote("Text")
                 .clickOnBack()
-                .clickYes();
+                .clickNo();
+    }
+
+    @Test
+    public void changeColorNote() {
+        addNewNotePage.changeNoteColor();
     }
 }

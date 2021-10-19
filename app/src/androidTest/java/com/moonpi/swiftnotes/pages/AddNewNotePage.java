@@ -9,9 +9,11 @@ import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.adevinta.android.barista.interaction.BaristaClickInteractions.clickOn;
 import static com.moonpi.swiftnotes.DeviceUtil.checkKeyboard;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
+import static java.util.Arrays.asList;
 
 import android.support.v7.widget.AppCompatImageButton;
 import android.view.View;
@@ -21,6 +23,8 @@ import com.moonpi.swiftnotes.R;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 
+import java.util.ArrayList;
+
 import io.qameta.allure.kotlin.Step;
 
 public class AddNewNotePage {
@@ -29,6 +33,7 @@ public class AddNewNotePage {
     private Matcher<View> noteField = withId(R.id.bodyEdit);
     private Matcher<View> changeColorButton = withId(R.id.action_note_colour);
     private Matcher<View> changeNoteColor = withText("Change note color");
+
     private Matcher<View> blueColorButton = withContentDescription("#44A1EB");
     private Matcher<View> mintColorButton = withContentDescription("#77DDBB");
     private Matcher<View> lightGreenColorButton = withContentDescription("#BBE535");
@@ -40,11 +45,17 @@ public class AddNewNotePage {
     private Matcher<View> whiteColorButton = withContentDescription("#FFFFFF");
     private Matcher<View> menuButton = withContentDescription("More options");
     private Matcher<View> noteFontSize = withText("Note font size");
+    private Matcher<View> noteFontSizeTitle = withText("Change note font size");
+    private Matcher<View> smallButton = withText("Small");
+    private Matcher<View> mediumButton = withText("Medium");
+    private Matcher<View> largeButton = withText("Large");
+    private Matcher<View> cancelButton = withText("Cancel");
     private Matcher<View> hideOrShowNoteBody = withText("Hide note body in list");
     private Matcher<View> backButton = allOf(Matchers.<View>instanceOf(AppCompatImageButton.class), withParent(withId(R.id.toolbarEdit)));
     private Matcher<View> saveChanges = withText("Save changes?");
     private Matcher<View> yesButton = withText("Yes");
     private Matcher<View> noButton = withText("No");
+    private ArrayList<Matcher<View>> list = new ArrayList<>(asList(blueColorButton, mintColorButton, lightGreenColorButton, yellowColorButton, orangeColorButton, lightRedColorButton, pinkColorButton, purpleColorButton, whiteColorButton));
 
     @Step("Проверка отображения экрана создания новой заметки")
     public AddNewNotePage checkAddNewNote() {
@@ -80,15 +91,9 @@ public class AddNewNotePage {
     @Step("Проверка экрана изменения цвета")
     public AddNewNotePage checkChangeColorMenu() {
         onView(changeNoteColor).check(matches(isDisplayed()));
-        onView(blueColorButton).check(matches(isDisplayed()));
-        onView(mintColorButton).check(matches(isDisplayed()));
-        onView(lightGreenColorButton).check(matches(isDisplayed()));
-        onView(yellowColorButton).check(matches(isDisplayed()));
-        onView(orangeColorButton).check(matches(isDisplayed()));
-        onView(lightRedColorButton).check(matches(isDisplayed()));
-        onView(pinkColorButton).check(matches(isDisplayed()));
-        onView(purpleColorButton).check(matches(isDisplayed()));
-        onView(whiteColorButton).check(matches(isDisplayed()));
+        for (int i = 0; i < list.size(); i++) {
+            onView(list.get(i)).check(matches(isDisplayed()));
+        }
         return this;
     }
 
@@ -98,10 +103,26 @@ public class AddNewNotePage {
         return this;
     }
 
-    @Step("Проверка экрана изменения цвета")
+    @Step("Проверка экрана контекстного меню")
     public AddNewNotePage checkContextMenu() {
         onView(noteFontSize).check(matches(isDisplayed()));
         onView(hideOrShowNoteBody).check(matches(isDisplayed()));
+        return this;
+    }
+
+    @Step("Клик по кнопке изменения шрифта")
+    public AddNewNotePage clickNoteFontSizeButton() {
+        onView(noteFontSize).perform(click());
+        return this;
+    }
+
+    @Step("Проверка экрана изменения размера шрифта")
+    public AddNewNotePage checkNoteFontSizeMenu() {
+        onView(noteFontSizeTitle).check(matches(isDisplayed()));
+        onView(smallButton).check(matches(isDisplayed()));
+        onView(mediumButton).check(matches(isDisplayed()));
+        onView(largeButton).check(matches(isDisplayed()));
+        onView(cancelButton).check(matches(isDisplayed()));
         return this;
     }
 
@@ -139,7 +160,10 @@ public class AddNewNotePage {
 
     @Step("Изменить цвет")
     public AddNewNotePage changeNoteColor() {
-        onView(changeColorButton).perform(click());
+        for (int i = 0; i < list.size(); i++) {
+            onView(changeColorButton).perform(click());
+            onView(list.get(i)).perform(click());
+        }
         return this;
     }
 }

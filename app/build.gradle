@@ -45,5 +45,7 @@ dependencies {
     androidTestImplementation "io.qameta.allure:allure-kotlin-commons:2.2.0"
     androidTestImplementation "io.qameta.allure:allure-kotlin-junit4:2.2.0"
     androidTestImplementation "io.qameta.allure:allure-kotlin-android:2.2.0"
-    androidTestImplementation "androidx.test.uiautomator:uiautomator:2.2.0"
+    androidTestImplementation('com.adevinta.android:barista:4.2.0') {
+        exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
+    }
 }
